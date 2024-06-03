@@ -1,0 +1,118 @@
+/* Estilos adicionais para a página de compra */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f5f5f5;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+header {
+    background-color: #2e2e2e;
+    color: #fff;
+    padding: 30px 0;
+    text-align: center;
+    font-family: "Poppins", sans-serif;
+    position: relative;
+}
+
+nav {
+    position: absolute;
+    top: 90%;
+    left: 15px;
+    transform: translateY(-50%);
+}
+
+nav a {
+    text-decoration: none;
+    color: #fff;
+    margin-left: 10px;
+}
+
+nav a:hover {
+    background-color: #1dbb42be;
+    transform: scale(1.2);
+    color: black;
+    text-decoration: underline;
+    padding: 5px;
+    border-radius: 3px;
+}
+
+.container {
+    width: 60%;
+    margin: 0 auto;
+    padding: 10px 0;
+    flex: 1;
+}
+
+.about {
+    background-color: #fff;
+    margin-bottom: 20px;
+    padding: 8px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+    font-family: "Sevillana";
+    font-size: 45px;
+    text-align: center;
+    color: #333;
+}
+
+label {
+    display: block;
+    margin: 10px 0 5px;
+}
+
+input {
+    width: calc(100% - 20px);
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+button {
+    background-color: #28a745;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    display: block;
+    width: 100%;
+    margin-top: 10px;
+}
+
+button:hover {
+    background-color: #218838;
+}
+
+.payment-methods {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 20px;
+}
+
+.payment-methods button {
+    width: 45%;
+}
+
+.payment-form {
+    display: none;
+}
+
+.payment-form.active {
+    display: block;
+}
+
+footer {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 15px 0;
+    margin-top: auto;
+}

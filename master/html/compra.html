@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Compra de Ingressos</title>
+    <link rel="stylesheet" href="../css/compra.css">
+    
+</head>
+
+<body>
+    <header>
+        <h1>Compra de Ingressos</h1>
+        <nav>
+            <a href="index.html">Início</a>
+        </nav>
+    </header>
+
+    <div class="container">
+        <section id="payment" class="about">
+            <h2>Opções de Pagamento</h2>
+            <p id="event-name"></p>
+            <div class="payment-methods">
+                <button id="pix-button">Pix</button>
+                <button id="card-button">Cartão de Crédito</button>
+            </div>
+            <form id="pix-form" class="payment-form">
+                <h3>Pagamento via Pix</h3>
+                <p>QR Code: <span id="qr-code">[QR Code Placeholder]</span></p>
+                <p>Código Copia e Cola: <span id="copy-paste-code">1234567890abcdef</span></p>
+                <button type="submit">Finalizar Compra</button>
+            </form>
+            <form id="card-form" class="payment-form">
+                <h3>Pagamento com Cartão de Crédito</h3>
+                <label for="name">Nome Completo:</label>
+                <input type="text" id="name" name="name" required>
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+                <label for="card">Número do Cartão:</label>
+                <input type="text" id="card" name="card" required>
+                <label for="expiry">Validade:</label>
+                <input type="text" id="expiry" name="expiry" required>
+                <label for="cvv">CVV:</label>
+                <input type="text" id="cvv" name="cvv" required>
+                <button type="submit">Finalizar Compra</button>
+            </form>
+        </section>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Loja de Ingressos. Todos os direitos reservados.</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const eventName = urlParams.get('event');
+            document.getElementById('event-name').textContent = `Você está comprando ingressos para: ${eventName}`;
+
+            const pixButton = document.getElementById('pix-button');
+            const cardButton = document.getElementById('card-button');
+            const pixForm = document.getElementById('pix-form');
+            const cardForm = document.getElementById('card-form');
+
+            pixButton.addEventListener('click', () => {
+                pixForm.classList.add('active');
+                cardForm.classList.remove('active');
+            });
+
+            cardButton.addEventListener('click', () => {
+                cardForm.classList.add('active');
+                pixForm.classList.remove('active');
+            });
+        });
+    </script>
+</body>
+</html>

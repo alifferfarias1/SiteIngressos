@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loja de Ingressos</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <script defer src="js/script.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Sevillana&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Loja de Ingressos</h1>
+        <nav>
+            <a href="#highlights">Destaques</a>
+            <a href="#about">Sobre</a>
+            <a href="#contact">Contato</a>
+            <a href="login.html" id="login-link">Login</a>
+            <a href="#" id="logout-link" style="display: none;">Logout</a>
+        </nav>
+    </header>
+
+    <div class="container">
+        <section id="highlights" class="highlights">
+            <h2>Eventos em Destaque</h2>
+            <div class="event">
+                <img src="../imgs/allianz-parque-1.jpg" alt="Evento 1">
+                <div class="event-details">
+                    <h3>Show da Banda XYZ</h3>
+                    <p>Data: 10 de Julho de 2024</p>
+                    <p>Local: Arena ABC</p>
+                    <button class="buy-button" data-event="Show da Banda XYZ">
+                        <a href="compra.html" target="_self">Comprar Ingresso</a>
+                    </button>
+                </div>
+            </div>
+            <div class="event">
+                <img src="../imgs/teatro.jpg" alt="Evento 2">
+                <div class="event-details">
+                    <h3>Peça Teatral ABC</h3>
+                    <p>Data: 15 de Agosto de 2024</p>
+                    <p>Local: Teatro DEF</p>
+                    <button class="buy-button" data-event="Peça Teatral ABC">
+                        <a href="compra.html" target="_self">Comprar Ingresso</a>
+                    </button>
+                </div>
+            </div>
+            <div class="event">
+                <img src="../imgs/lolla.jpg" alt="Evento 3">
+                <div class="event-details">
+                    <h3>Festival de Música 123</h3>
+                    <p>Data: 20 de Setembro de 2024</p>
+                    <p>Local: Parque GHI</p>
+                    <button class="buy-button" data-event="Festival de Música 123">
+                        <a href="compra.html" target="_self">Comprar Ingresso</a>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <section id="about" class="about">
+            <h2>Sobre Nós</h2>
+            <p>Bem-vindo à Loja de Ingressos, a sua melhor opção para comprar ingressos para shows, teatros, festivais e
+                muito mais. Oferecemos uma ampla variedade de eventos para todos os gostos e idades. Nosso objetivo é
+                proporcionar a melhor experiência possível na compra de ingressos online.</p>
+        </section>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Loja de Ingressos. Todos os direitos reservados.</p>
+    </footer>
+
+    <script src="js/index.js"></script>
+</body>
+</html>
