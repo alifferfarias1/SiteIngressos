@@ -1,75 +1,54 @@
-document.addEventListener('DOMContentLoaded', () => {
-    const eventForm = document.getElementById('event-form');
-    const eventList = document.getElementById('event-list');
+const eventForm = document.getElementById('event-form');
+        const eventList = document.getElementById('event-list');
 
-    let events = [
-        { id: 1, name: 'Show da Banda XYZ', date: '2024-07-10', location: 'Arena ABC' },
-        { id: 2, name: 'Peça Teatral ABC', date: '2024-08-15', location: 'Teatro DEF' },
-        { id: 3, name: 'Festival de Música 123', date: '2024-09-20', location: 'Parque GHI' }
-    ];
+        document.addEventListener('DOMContentLoaded', loadEvents);
 
-    function renderEvents() {
-        eventList.innerHTML = '';
-        events.forEach(event => {
-            const eventItem = document.createElement('div');
-            eventItem.className = 'event-item';
-            eventItem.innerHTML = `
-                <p>${event.name}</p>
-                <p>Data: ${event.date}</p>
-                <p>Local: ${event.location}</p>
-                <div class="event-actions">
-                    <button class="edit-button" data-event-id="${event.id}">Editar</button>
-                    <button class="delete-button" data-event-id="${event.id}">Excluir</button>
-                </div>
-            `;
-            eventList.appendChild(eventItem);
+        eventForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const id = document.getElementById('event-id').value;
+            const name = document.getElementById('event-name').value;
+            const date = document.getElementById('event-date').value;
+            const location = document.getElementById('event-location').value;
+            const event = { id: id || new Date().getTime().toString(), name, date, location };
+            saveEvent(event);
+            eventForm.reset();
         });
 
-        document.querySelectorAll('.edit-button').forEach(button => {
-            button.addEventListener('click', () => {
-                const eventId = button.getAttribute('data-event-id');
-                const event = events.find(e => e.id == eventId);
-                document.getElementById('event-name').value = event.name;
-                document.getElementById('event-date').value = event.date;
-                document.getElementById('event-location').value = event.location;
-                eventForm.setAttribute('data-editing-id', event.id);
-            });
-        });
-
-        document.querySelectorAll('.delete-button').forEach(button => {
-            button.addEventListener('click', () => {
-                const eventId = button.getAttribute('data-event-id');
-                events = events.filter(e => e.id != eventId);
-                renderEvents();
-            });
-        });
-    }
-
-    eventForm.addEventListener('submit', function(event) {
-        event.preventDefault();
-        
-        const eventName = document.getElementById('event-name').value;
-        const eventDate = document.getElementById('event-date').value;
-        const eventLocation = document.getElementById('event-location').value;
-        const editingId = eventForm.getAttribute('data-editing-id');
-        
-        if (editingId) {
-            const eventIndex = events.findIndex(e => e.id == editingId);
-            events[eventIndex] = { id: editingId, name: eventName, date: eventDate, location: eventLocation };
-            eventForm.removeAttribute('data-editing-id');
-        } else {
-            const newEvent = {
-                id: events.length + 1,
-                name: eventName,
-                date: eventDate,
-                location: eventLocation
-            };
-            events.push(newEvent);
+        function saveEvent(event) {
+            let events = JSON.parse(localStorage.getItem('events')) || [];
+            const eventIndex = events.findIndex(e => e.id === event.id);
+            if (eventIndex > -1) {
+                events[eventIndex] = event;
+            } else {
+                events.push(event);
+            }
+            localStorage.setItem('events', JSON.stringify(events));
+            loadEvents();
         }
 
-        eventForm.reset();
-        renderEvents();
-    });
+        function loadEvents() {
+            const events = JSON.parse(localStorage.getItem('events')) || [];
+            eventList.innerHTML = events.map(event => `
+                <li>
+                    ${event.name} - ${event.date} - ${event.location}
+                    <button onclick="editEvent('${event.id}')">Editar</button>
+                    <button onclick="deleteEvent('${event.id}')">Excluir</button>
+                </li>
+            `).join('');
+        }
 
-    renderEvents();
-});
+        window.editEvent = function(id) {
+            const events = JSON.parse(localStorage.getItem('events')) || [];
+            const event = events.find(e => e.id === id);
+            document.getElementById('event-id').value = event.id;
+            document.getElementById('event-name').value = event.name;
+            document.getElementById('event-date').value = event.date;
+            document.getElementById('event-location').value = event.location;
+        }
+
+        window.deleteEvent = function(id) {
+            let events = JSON.parse(localStorage.getItem('events')) || [];
+            events = events.filter(e => e.id !== id);
+            localStorage.setItem('events', JSON.stringify(events));
+            loadEvents();
+        }
