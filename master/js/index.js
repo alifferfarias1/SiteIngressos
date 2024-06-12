@@ -9,7 +9,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
-
 document.addEventListener('DOMContentLoaded', () => {
     const loginLink = document.getElementById('login-link');
     const logoutLink = document.getElementById('logout-link');
